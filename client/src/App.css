@@ -2,37 +2,91 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  margin: 2em;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #e7e7e7;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+align-items: center;
+justify-content: center;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+.navbar {
+  color: black;
+  font-size: 3em;
+  /* background-color: rgb(162, 158, 158); */
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin-bottom: 1em;
+}
+
+.add_movie_and_genre {
+  display: flex;
+  justify-content: space-around;
+}
+
+.NewStepComponent, .NewLevelComponent {
+  margin: 2em;
+}
+
+.button_submit, .button_edit, .button_add {
+  border-radius: 5px;
+  padding: 6px 18px;
   color: white;
+  border: none;
+  background-color: hwb(209 5% 27%);
 }
 
-.App-link {
-  color: #61dafb;
+.button_delete, .button_close {
+  border-radius: 5px;
+  padding: 6px 18px;
+  color: white;
+  border: none;
+  background-color: rgb(175, 8, 8);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.button_add {
+  border-radius: 5px;
+  padding: 6px 18px;
+  font-size: 1.5em;
+  color: white;
+  border: none;
+  background-color: rgb(26, 86, 13);
+
+}
+
+.button_submit {
+  border-radius: 5px;
+  padding: 6px 18px;
+  color: white;
+  border: none;
+  background-color: rgb(26, 86, 13);
+}
+
+.tabletitle {
+  font-size: 2em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border-style: dotted;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+}
+
+th, td, tr {
+  padding: 1em
+}
+
+.movielist_table, .genrelist_table {
+  margin: auto;
 }
