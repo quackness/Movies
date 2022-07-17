@@ -1,5 +1,3 @@
-const hookUseState = require('eslint-plugin-react/lib/rules/hook-use-state');
-
 const Pool = require('pg').Pool;
 
 const pool = new Pool({

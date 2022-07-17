@@ -8,11 +8,11 @@ function App() {
   return (
     <div className="App">
       <div className = "add_movie_and_genre">
-      <NewMovie movies={movies} genres={genres} setMovies={setMovies}/>
-      <NewGenre genres={genres} setGenres={setGenres}/>
+      <NewMovie />
+      <NewGenre />
       </div>
-      <MoviesList movies={movies} setMovies={setMovies}/>
-      <GenresList genres={genres} setGenres={setGenres}/>
+      <MoviesList />
+      <GenresList />
     </div>
   );
 }

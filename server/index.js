@@ -12,3 +12,16 @@ app.use(morgan('dev'));
 app.listen(PORT, () => {
   console.log(`Movies app running on port ${PORT}`);
 })
+
+app.get("/movies", async (req, res) => {
+  try {
+    const getAllMovies = await pool.query(
+      `SELECT movie_id, movie_title, movie_year, movie_genre_id, movie_imbd, genre_title
+      FROM movies JOIN genres ON genres.genre_id = movies.movie_genre_id
+      ORDER BY movie_id DESC`
+    );
+    res.json(getAllMovies.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+})
