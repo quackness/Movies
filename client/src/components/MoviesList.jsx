@@ -1,4 +1,5 @@
-export default function MoviesList () {
+export default function MoviesList ({movies}) {
+  // const { movies } = props;
   return (
     <>
       <div className="tabletitle">
@@ -16,12 +17,15 @@ export default function MoviesList () {
             </tr>
           </thead>
           <tbody>
-            <td>Forrest</td>
-            <td>1994</td>
-            <td>Drama</td>
-            <td>http://www.etc.com</td>
-            <td>Edit</td>
-            <td>Delete </td>
+            {movies.map(movie =>
+              <tr key={movie.movie_id}>
+                <td>{movie.movie_title}</td>
+                <td>{movie.movie_year}</td>
+                <td>{movie.genre_title}</td>
+                <td>{movie.movie_imbd}</td>
+                <td>Edit button</td>
+                <td>Delete button</td>
+            </tr>)}
           </tbody>
         </table>
     </>
