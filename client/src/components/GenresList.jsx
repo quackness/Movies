@@ -10,17 +10,20 @@ export default function GenresList (props) {
         <thead>
           <tr>
             <th>Title</th> 
+            <th>Edit</th> 
+            <th>Delete</th> 
           </tr>
+          </thead>
           <tbody>
             {genres.map(genre => 
               <tr key = {genre.genre_id}>
               <td> {genre.genre_title} </td>
+              <td> edit </td>
+              <td> delete </td>
               </tr>
             )}
           </tbody>
-        </thead>
-
-      </table>
+         </table>
     </>
   )
 }
