@@ -10,6 +10,7 @@ function App() {
 
   const [movies, setMovies] = useState([]);
   console.log(movies)
+  const [genres, setGenres] = useState([]);
  
 
   useEffect(() => {
@@ -17,6 +18,13 @@ function App() {
       .then(function(res) {
         setMovies([...res.data])
       })
+  }, [])
+
+  useEffect(() => {
+    axios.get('http://localhost:8001/genres')
+    .then(function(res) {
+      setGenres([...res.data])
+    })
   }, [])
 
 
@@ -27,7 +35,7 @@ function App() {
       <NewGenre />
       </div>
       <MoviesList movies = {movies} />
-      <GenresList />
+      <GenresList genres = {genres} />
     </div>
   );
 }

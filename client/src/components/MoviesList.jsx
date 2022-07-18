@@ -6,7 +6,7 @@ export default function MoviesList (props) {
   return (
     <>
       <div className="tabletitle">
-        List of movies!!
+        List of movies
       </div>
         <table className="movielist_table">
           <thead>
