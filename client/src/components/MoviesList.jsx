@@ -1,9 +1,12 @@
-export default function MoviesList ({movies}) {
-  // const { movies } = props;
+export default function MoviesList (props) {
+  console.log("props", props)
+ const { 
+   movies 
+  } = props;
   return (
     <>
       <div className="tabletitle">
-        List of movies
+        List of movies!!
       </div>
         <table className="movielist_table">
           <thead>
