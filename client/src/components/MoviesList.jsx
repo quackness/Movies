@@ -41,7 +41,7 @@ export default function MoviesList (props) {
                 <td>Edit button</td>
                 <td>
                   <button 
-                  className = "button-delete"
+                  className="button_delete"
                   onClick={() => deleteMovie(movie.movie_id)} >
                   Delete</button></td>
             </tr>)}

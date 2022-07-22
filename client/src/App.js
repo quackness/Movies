@@ -18,7 +18,7 @@ function App() {
       .then(function(res) {
         setMovies([...res.data])
       })
-  }, [])
+  }, [genres])
 
   useEffect(() => {
     axios.get('http://localhost:8001/genres')
