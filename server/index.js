@@ -67,3 +67,17 @@ app.delete("/genres/delete/:id", async (req, res) => {
     console.error(err.message)
   }
 })
+
+//add a movie
+app.post("/movies", async (res, req) => {
+  try {
+    const {movie_title, movie_year, movie_genre_id, movie_imbd} = req.body;
+    console.log(req.body)
+    const newMovie =  await pool.query(
+      `INSERT INTO movies (movie_title, movie_year, movie_genre_id, movie_imbd)
+      VALUES ($1, $2, $3, $4) RETURNING *`, [movie_title, movie_year, movie_genre_id, movie_imbd])
+      res.json(newMovie.rows[0]);
+  } catch (err) {
+    console.error(err.message)
+  }
+})
