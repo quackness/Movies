@@ -38,3 +38,17 @@ app.get("/genres", async (req,res) => {
       console.error(err.message);
   }
 })
+
+//delete a movie
+app.delete("/delete/:id", async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    console.log("deleted movie id", id)
+    const deleteStep = await pool.query(
+      "DELETE FROM movies WHERE movie_id = $1 RETURNING *", [id]
+    )
+    res.json("The has been deleted")
+  } catch (err) {
+    console.error(err.message)
+  }
+});

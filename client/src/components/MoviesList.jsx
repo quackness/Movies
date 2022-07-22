@@ -1,8 +1,20 @@
+import axios from "axios";
+
+
 export default function MoviesList (props) {
   console.log("props", props)
  const { 
-   movies 
+   movies, setMovies
   } = props;
+
+  function deleteMovie(id) {
+    return axios.delete(`http://localhost:8001/delete/${id}`)
+      .then(res => {
+        setMovies(movies.filter(movie => movie.movie_id !== id))
+        console.log("Movie delete id:", id)
+      })
+  }
+
   return (
     <>
       <div className="tabletitle">
@@ -27,7 +39,11 @@ export default function MoviesList (props) {
                 <td>{movie.genre_title}</td>
                 <td>{movie.movie_imbd}</td>
                 <td>Edit button</td>
-                <td>Delete button</td>
+                <td>
+                  <button 
+                  className = "button-delete"
+                  onClick={() => deleteMovie(movie.movie_id)} >
+                  Delete</button></td>
             </tr>)}
           </tbody>
         </table>
