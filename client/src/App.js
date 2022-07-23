@@ -32,7 +32,7 @@ function App() {
     <div className="App">
       <div className = "add_movie_and_genre">
       <NewMovie movies = {movies} genres = {genres} setMovies={setMovies}/>
-      <NewGenre />
+      <NewGenre genres = {genres} setGenres={setGenres}/>
       </div>
       <MoviesList movies = {movies} setMovies={setMovies}/>
       <GenresList genres = {genres} setGenres={setGenres}/>

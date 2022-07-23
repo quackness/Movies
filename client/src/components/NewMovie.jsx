@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 
@@ -7,9 +7,22 @@ export default function NewMovie (props) {
   const { movies, genres, setMovies } = props; 
 
   const[title, setTitle] = useState("")
-  const[year, setYear] = useState()
+  const[year, setYear] = useState(19)
   const[genreId, setGenreId] = useState("")
   const[imbd, setImbd] = useState("")
+
+ 
+  useEffect (() => {
+    const foundGenre = genres.find((genre) => {
+      return genre.genre_id === genreId
+      // return genre.level_id === movie_genre
+    })
+    if (!foundGenre && genres.length) {
+      setGenreId(genres[0].genre_id)
+    }
+  }, [genres, genreId])
+
+
 
     function onSubmitForm(e) {
       e.preventDefault();
@@ -23,7 +36,27 @@ export default function NewMovie (props) {
       resetForm()
     }
 
+    function addMovie(movie) {
+      console.log("movie added", movie)
 
+      return axios.post(`http://localhost:8001/movie`, movie)
+       .then((response) => {
+         const newMovie = response.data;
+         const movieGenre = genres.find((genre) => {
+           return genre.genre_id === newMovie.movie_genre_id
+         })
+         console.log("movie", newMovie)
+         console.log("movieGenre", movieGenre)
+         newMovie.genre_title = movieGenre.genre_title;
+         setMovies([newMovie, ...movies]) 
+    })
+  }
+
+  function resetForm() {
+    setTitle("");
+    // setYear("");
+    setImbd("");
+  }
 
 
   return (
