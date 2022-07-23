@@ -1,6 +1,31 @@
+import { useState } from "react";
+import axios from "axios";
+
+
 export default function NewMovie (props) {
 
-  const { movies } = props; 
+  const { movies, genres, setMovies } = props; 
+
+  const[title, setTitle] = useState("")
+  const[year, setYear] = useState()
+  const[genreId, setGenreId] = useState("")
+  const[imbd, setImbd] = useState("")
+
+    function onSubmitForm(e) {
+      e.preventDefault();
+      const movie = {
+        title,
+        year,
+        genreId,
+        imbd
+      }
+      addMovie(movie);
+      resetForm()
+    }
+
+
+
+
   return (
     <div>
       <button type="button"
@@ -21,21 +46,50 @@ export default function NewMovie (props) {
            <div className="modal-body">
  
              <label className="add_movie_title" htmlFor="title">Title</label>
-             <input className="form-control" type="text" name="title" />
+             <input 
+             className="form-control" 
+             type="text" 
+             name="title" 
+             value={title}
+             onChange={ e => setTitle(e.target.value)}
+             />
              <p></p>
  
              <label className="add_movie_title" htmlFor="title">Year</label>
-             <input className="form-control" type="text" name="title" />
+             <input 
+             className="form-control" 
+             type="text" 
+             name="title" 
+             value={year}
+             onChange={ e => setYear(e.target.value)}
+             />
              <p></p>
  
              <div className="level_input">
                <label className="add_movie_title" htmlFor="title">Genre</label>
-               <select className="form-control">
+               <select className="form-control"
+               value={genreId}
+               onChange={e => setGenreId(e.target.value)}
+               >
+                {genres.map(genre =>
+                  <option
+                  key={genre.genre_id}
+                  value={genre.genre_id}>
+                    {genre.genre_title}
+                  </option>
+                )}
+              
                </select>
              </div>
  
              <label className="add_movie_title" htmlFor="title">Imdb</label>
-             <input className="form-control" type="text" name="title" />
+             <input 
+             className="form-control" 
+             type="text" 
+             name="title"
+             value={imbd}
+             onChange={e => setImbd(e.target.value)}
+             />
              <p></p>
  
            </div>
@@ -45,6 +99,7 @@ export default function NewMovie (props) {
              <button
                className="button_submit"
                type="Submit"
+               onClick={onSubmitForm}
                data-dismiss="modal"
              >Add movie</button>
            </div>
