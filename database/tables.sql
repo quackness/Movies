@@ -11,6 +11,6 @@ CREATE TABLE movies (
   movie_title VARCHAR(255) NOT NULL,
   movie_year INTEGER,
   movie_genre_id INTEGER REFERENCES genres(genre_id) ON DELETE CASCADE,
-  movie_imbd VARCHAR(255)
+  movie_imdb VARCHAR(255)
 );
 

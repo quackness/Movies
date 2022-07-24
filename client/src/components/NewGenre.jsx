@@ -39,7 +39,7 @@ export default function NewGenre (props) {
 
       {/* <!-- Button trigger modal --> */}
      <button type="button"
-       className="button_add" data-toggle="modal" data-target={`#newgenremodal${genres.genre_id}`}>Add genre
+       className="button_add" data-toggle="modal" data-target={`#newgenremodal${genres.genre_id}`}>Add genres
      </button>
  
      {/* <!-- Modal --> */}

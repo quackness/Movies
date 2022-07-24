@@ -9,7 +9,7 @@ export default function NewMovie (props) {
   const[title, setTitle] = useState("")
   const[year, setYear] = useState(19)
   const[genreId, setGenreId] = useState("")
-  const[imbd, setImbd] = useState("")
+  const[imdb, setimdb] = useState("")
 
  
   useEffect (() => {
@@ -30,7 +30,7 @@ export default function NewMovie (props) {
         title,
         year,
         genreId,
-        imbd
+        imdb
       }
       addMovie(movie);
       resetForm()
@@ -39,7 +39,7 @@ export default function NewMovie (props) {
     function addMovie(movie) {
       console.log("movie added", movie)
 
-      return axios.post(`http://localhost:8001/movie`, movie)
+      return axios.post(`http://localhost:8001/movies`, movie)
        .then((response) => {
          const newMovie = response.data;
          const movieGenre = genres.find((genre) => {
@@ -55,7 +55,7 @@ export default function NewMovie (props) {
   function resetForm() {
     setTitle("");
     // setYear("");
-    setImbd("");
+    setimdb("");
   }
 
 
@@ -120,8 +120,8 @@ export default function NewMovie (props) {
              className="form-control" 
              type="text" 
              name="title"
-             value={imbd}
-             onChange={e => setImbd(e.target.value)}
+             value={imdb}
+             onChange={e => setimdb(e.target.value)}
              />
              <p></p>
  
