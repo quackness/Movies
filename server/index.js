@@ -17,7 +17,7 @@ app.get("/movies", async (req, res) => {
   try {
     console.log(req);
     const getAllMovies = await pool.query(
-      `SELECT movie_id, movie_title, movie_year, movie_genre_id, movie_imbd, genre_title
+      `SELECT movie_id, movie_title, movie_year, movie_genre_id, movie_imdb, genre_title
       FROM movies JOIN genres ON genres.genre_id = movies.movie_genre_id
       ORDER BY movie_id DESC`
     );
@@ -72,11 +72,11 @@ app.delete("/genres/delete/:id", async (req, res) => {
 app.post("/movies", async (req, res) => {
   try {
     console.log("req.body >>", req.body)
-    // const {movie_title, movie_year, movie_genre_id, movie_imbd} = req.body;
+    // const {movie_title, movie_year, movie_genre_id, movie_imdb} = req.body;
     // console.log(req.body)
     const newMovie =  await pool.query(
-      `INSERT INTO movies (movie_title, movie_year, movie_genre_id, movie_imbd)
-      VALUES ($1, $2, $3, $4) RETURNING *`, [req.body.title, req.body.year, req.body.genreId, req.body.imbd])
+      `INSERT INTO movies (movie_title, movie_year, movie_genre_id, movie_imdb)
+      VALUES ($1, $2, $3, $4) RETURNING *`, [req.body.title, req.body.year, req.body.genreId, req.body.imdb])
       res.json(newMovie.rows[0])
     // const newMovieGenre =  await pool.query(
     //     `Select genre_title FROM genres 
@@ -101,4 +101,17 @@ app.post("/genres", async (req, res) => {
     } catch (err) {
       console.error(err.message)
     }
+})
+
+//edit a movie
+app.put("/movies/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { movie_title, movie_year, movie_genre_id, movie_imdb } = req.body
+    const editMovie = await pool.query(
+      `UPDATE movies SET movie_title=$1, movie_year=$2, movie_genre_id=$3, movie_imdb=$4 WHERE movie_id=$5`, [movie_title, movie_year, movie_genre_id, movie_imdb, id])
+    res.json("Movie was updated")
+  } catch (err) {
+    console.error(err.message)
+  }
 })

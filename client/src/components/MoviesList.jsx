@@ -1,10 +1,11 @@
 import axios from "axios";
+import EditMovies from "./EditMovies";
 
 
 export default function MoviesList (props) {
   console.log("props", props)
  const { 
-   movies, setMovies
+   movies, setMovies, genres
   } = props;
 
   function deleteMovie(id) {
@@ -26,7 +27,7 @@ export default function MoviesList (props) {
               <th>Title</th>
               <th>Year</th>
               <th>Genre</th>
-              <th>Imbd</th>
+              <th>imdb</th>
               <th>Edit</th>
               <th>Delete</th>
             </tr>
@@ -37,8 +38,8 @@ export default function MoviesList (props) {
                 <td>{movie.movie_title}</td>
                 <td>{movie.movie_year}</td>
                 <td>{movie.genre_title}</td>
-                <td>{movie.movie_imbd}</td>
-                <td>Edit button</td>
+                <td>{movie.movie_imdb}</td>
+                <td>< EditMovies movie={movie} genres={genres} setMovies={setMovies} movies={movies}/></td>
                 <td>
                   <button 
                   className="button_delete"
