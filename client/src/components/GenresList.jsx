@@ -1,4 +1,5 @@
 import axios from "axios";
+import EditGenres from "./EditGenres";
 
 export default function GenresList (props) {
   const { genres, setGenres } = props;
@@ -29,7 +30,7 @@ export default function GenresList (props) {
             {genres.map(genre => 
               <tr key = {genre.genre_id}>
               <td> {genre.genre_title} | {genre.genre_id}</td>
-              <td> edit </td>
+              <td> <EditGenres genres={genres} genre={genre} setGenres={setGenres}/> </td>
               <td><button 
               className="button_delete"
               onClick={() => deleteGenre(genre.genre_id)}
